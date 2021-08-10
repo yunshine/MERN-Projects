@@ -1,17 +1,34 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const methodOverride = require('method-override'); /* Lets you use HTTP verbs such as PUT or DELETE in places not supported in the client */
+const bodyParser = require('body-parser'); /* Parses incoming request bodies */
 
+
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+    console.log("process.env: ", process.env.NODE_ENV || "development environment");
+}
 // app.use(express.json());
 
-// mongoose.connect('mongodb://localhost:27017/mernauth', {
-//     useNewUrlParser: true, useUnifiedTopology: true
-// }, () => {
-//     console.log("Successfully connected to the mernauth database!");
-// });
+// this will select the database url based on the environment that runs it...
+const url = process.env.DATABASEURL || 'mongodb://localhost:27017/mern-todo';
+mongoose.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+})
+    .then(() => console.log('The Mern Todo App is connected to the Mongo database!'))
+    .catch(error => console.log("Mongo database not connected...", error.message));
 
 // const userRouter = require('./routes/User');
 // app.use('/user', userRouter);
+
+// app.use(cafeRoutes);
+// app.use(commentRoutes);
+// app.use(userRoutes);
+// app.use(indexRoutes);
 
 
 app.listen(3000, () => {
