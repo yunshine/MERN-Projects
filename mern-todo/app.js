@@ -19,7 +19,7 @@ mongoose.connect(url, {
     useCreateIndex: true,
     useFindAndModify: false
 })
-    .then(() => console.log('The Mern Todo App is connected to the Mongo database!'))
+    .then(() => console.log('The MERN-Todo app is connected to the Mongo database!'))
     .catch(error => console.log("Mongo database not connected...", error.message));
 
 // const userRouter = require('./routes/User');
@@ -32,7 +32,7 @@ mongoose.connect(url, {
 
 
 app.listen(3000, () => {
-    console.log("Welcome to MERN-TODO! You've created a server using Express. The server has started and is now listening on port 3000...");
+    console.log("Welcome to MERN-Todo! You've created a server using Express. The server has started and is now listening on port 3000...");
 });
 
 
