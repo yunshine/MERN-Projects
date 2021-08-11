@@ -3,13 +3,18 @@ const app = express();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override'); /* Lets you use HTTP verbs such as PUT or DELETE in places not supported in the client */
 const bodyParser = require('body-parser'); /* Parses incoming request bodies */
-
+const expressSanitizer = require('express-sanitizer'); /* Sanitizes data from inputs */
 
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
     console.log("process.env: ", process.env.NODE_ENV || "development environment");
 }
+
 // app.use(express.json());
+// app.use(express.static('public'));
+app.use(methodOverride('_method'));
+app.use(bodyParser.urlencoded({ extended: true })); // for data in url payloads, no JSON...
+app.use(expressSanitizer());
 
 // this will select the database url based on the environment that runs it...
 const url = process.env.DATABASEURL || 'mongodb://localhost:27017/mern-todo';
@@ -34,6 +39,7 @@ mongoose.connect(url, {
 app.listen(3000, () => {
     console.log("Welcome to MERN-Todo! You've created a server using Express. The server has started and is now listening on port 3000...");
 });
+
 
 
 // if (process.env.NODE_ENV !== "production") {
