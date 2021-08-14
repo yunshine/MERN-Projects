@@ -1,4 +1,19 @@
-const Recipe = require('../models/recipe-model');
+const Todo = require('../models/todo');
+
+/* index route controller - show all todos */
+getTodos = async (req, res) => {
+    await Todo.find({}, (err, todos) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err });
+        };
+        if (!todos.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Todos not found` });
+        };
+        return res.status(200).json({ success: true, data: todos });
+    }).catch(err => console.log(err))
+};
 
 createRecipe = (req, res) => {
     const body = req.body;
@@ -104,25 +119,11 @@ getRecipeById = async (req, res) => {
     }).catch(err => console.log(err))
 };
 
-getRecipes = async (req, res) => {
-    await Recipe.find({}, (err, recipes) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err });
-        };
-        if (!recipes.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Recipe not found` });
-        };
-        return res.status(200).json({ success: true, data: recipes });
-    }).catch(err => console.log(err))
-};
-
 module.exports = {
+    getTodos,
     createRecipe,
     updateRecipe,
     deleteRecipe,
-    getRecipes,
     getRecipeById,
 };
 
