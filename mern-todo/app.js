@@ -10,11 +10,11 @@ if (process.env.NODE_ENV !== "production") {
     console.log("process.env: ", process.env.NODE_ENV || "development environment");
 }
 
-// app.use(express.json());
 // app.use(express.static('public'));
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: true })); // for data in url payloads, no JSON...
 app.use(expressSanitizer());
+app.use(express.json()); /* Needed for incoming POST and PUT requests, because in both these requests you are sending data (in the form of some data object) to the server and you are asking the server to accept or store that data (object), which is enclosed in the body (i.e. req.body) of that (POST or PUT) Request */
 
 // this will select the database url based on the environment that runs it...
 const url = process.env.DATABASEURL || 'mongodb://localhost:27017/mern-todo';
