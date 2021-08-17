@@ -9,41 +9,41 @@ getTodos = async (req, res) => {
         if (!todos.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `Todos not found` });
+                .json({ success: false, error: `Todos not found.` });
         };
         return res.status(200).json({ success: true, data: todos });
     }).catch(err => console.log(err))
 };
 
-createRecipe = (req, res) => {
+createTodo = (req, res) => {
     const body = req.body;
 
     if (!body) {
         return res.status(400).json({
             success: false,
-            error: 'You must provide a recipe',
+            error: 'You must provide a todo.',
         });
     };
 
-    const recipe = new Recipe(body);
+    const todo = new Todo(body);
 
-    if (!recipe) {
+    if (!todo) {
         return res.status(400).json({ success: false, error: err });
     };
 
-    recipe
+    todo
         .save()
         .then(() => {
             return res.status(201).json({
                 success: true,
-                id: recipe._id,
-                message: 'Recipe created!',
+                id: todo._id,
+                message: 'Todo successfully created!',
             });
         })
         .catch(error => {
             return res.status(400).json({
                 error,
-                message: 'There was an error - recipe not created',
+                message: 'There was an error - todo not created.',
             });
         })
 };
