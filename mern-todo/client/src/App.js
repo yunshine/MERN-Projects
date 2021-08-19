@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import { newTodo } from '../pages';
 
 function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/todos/new" exact component={Root} />
+                <Route path="/todos/new" exact component={newTodo} />
             </Switch>
         </Router>
     );
