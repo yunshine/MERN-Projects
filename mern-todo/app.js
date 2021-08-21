@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override'); /* Lets you use HTTP verbs such as PUT or DELETE in places not supported in the client */
 const bodyParser = require('body-parser'); /* Parses incoming request bodies */
 const expressSanitizer = require('express-sanitizer'); /* Sanitizes data from inputs */
+const todosRouter = require('./routes/todos');
 
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
@@ -35,6 +36,12 @@ mongoose.connect(url, {
 // app.use(userRoutes);
 // app.use(indexRoutes);
 
+app.get('/', (req, res) => {
+    res.send('MERN Todo App server connected and listening...')
+});
+
+// todo routes & todo API endpoints...
+app.use('/api', todosRouter);
 
 app.listen(3000, () => {
     console.log("Welcome to MERN-Todo! You've created a server using Express. The server has started and is now listening on port 3000...");
