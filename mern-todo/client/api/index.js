@@ -9,7 +9,7 @@ export const getAllTodos = () => api.get(`/todos/list`);
 export const createTodo = payload => api.post(`/todos/create`, payload);
 export const getTodoById = id => api.get(`/todos/${id}`);
 export const updateTodoById = (id, payload) => api.put(`/todos/${id}`, payload);
-export const deleteTodoById = id => api.delete(`/recipes/${id}`);
+export const deleteTodoById = id => api.delete(`/todos/${id}`);
 
 // export const registerUser = payload => api.post(`/users/register`, payload);
 
