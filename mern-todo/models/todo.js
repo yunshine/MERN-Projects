@@ -6,7 +6,7 @@ const todoSchema = new mongoose.Schema({
     todo: { type: String, required: true },
     // how to set a default value in the schema...
     note: { type: String, default: '' },
-    isCompleted: { type: Boolean, default: false },
+    isComplete: { type: Boolean, default: false },
     created: { type: Date, default: Date.now() },
     // author: {
     //     id:
