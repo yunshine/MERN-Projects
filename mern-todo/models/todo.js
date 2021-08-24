@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const todoSchema = new mongoose.Schema({
     // how to set a required value in the schema...
-    todo: { type: String, required: true },
+    task: { type: String, required: true },
     // how to set a default value in the schema...
     note: { type: String, default: '' },
     isComplete: { type: Boolean, default: false },

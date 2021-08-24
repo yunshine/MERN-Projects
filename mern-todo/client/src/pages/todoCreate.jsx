@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import api from '../api'
 
 const TodoCreate = () => {
-    const [todo, setTodo] = useState('');
+    const [task, setTask] = useState('');
     const [note, setNote] = useState('');
     const [isComplete, setIsComplete] = useState(false);
     // isPending used for dynamic text on form submit button...
@@ -14,12 +14,12 @@ const TodoCreate = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const todo = { todo, note, isComplete };
+        const todo = { task, note, isComplete };
 
         setIsPending(true);
 
         // how to make a post request in React...
-        fetch('http://localhost:8080/blogs', {
+        fetch('http://localhost:8080/todos/create', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(todo)
@@ -37,32 +37,22 @@ const TodoCreate = () => {
 
             {/* how to submit a form in React... */}
             <form onSubmit={handleSubmit}>
-                <label>Blog Title</label>
+                <label>Todo Item</label>
                 {/* how to use forms in React... */}
                 <input
                     type="text"
                     required
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={task}
+                    onChange={(e) => setTask(e.target.value)}
                 />
 
-                <label>Blog Body</label>
+                <label>Todo Note</label>
                 {/* how to use forms in React... */}
                 <textarea
-                    required
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
                 ></textarea>
 
-                <label>Blog Author: </label>
-                {/* how to use forms in React... */}
-                <select
-                    value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
-                >
-                    <option value="Eunjoo">Eunjoo</option>
-                    <option value="Yun">Yun</option>
-                </select>
                 {!isPending && <button>Submit Blog</button>}
                 {isPending && <button disabled>Adding Blog...</button>}
             </form>

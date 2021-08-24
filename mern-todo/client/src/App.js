@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { newTodo } from '../pages';
+import { TodoCreate } from '../pages';
 
 function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/todos/new" exact component={newTodo} />
+                <Route path="/todos/new" exact component={TodoCreate} />
             </Switch>
         </Router>
     );
