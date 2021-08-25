@@ -121,7 +121,7 @@ getRecipeById = async (req, res) => {
 
 module.exports = {
     getTodos,
-    createRecipe,
+    createTodo,
     updateRecipe,
     deleteRecipe,
     getRecipeById,

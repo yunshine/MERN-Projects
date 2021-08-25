@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { TodoCreate } from '../pages';
+import { TodoCreate } from './pages';
 
 function App() {
     return (
