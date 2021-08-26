@@ -1,3 +1,4 @@
-import TodoNew from './todosNew';
+import TodosIndex from './todosIndex';
+import TodosNew from './todosNew';
 
-export { TodoNew };
+export { TodosIndex, TodosNew };

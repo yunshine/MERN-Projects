@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import apis from '../api';
 
-const TodoCreate = () => {
+const TodosNew = () => {
     const [task, setTask] = useState('');
     const [note, setNote] = useState('');
     const [isComplete, setIsComplete] = useState(false);
@@ -32,7 +32,7 @@ const TodoCreate = () => {
     }
 
     return (
-        <div className="TodoCreate">
+        <div className="TodosNew">
             <h2>Create a New Todo</h2>
 
             {/* how to submit a form in React... */}
@@ -59,7 +59,7 @@ const TodoCreate = () => {
         </div>
     );
 }
-export default TodoCreate;
+export default TodosNew;
 
 
 // class RecipesCreate extends Component {
