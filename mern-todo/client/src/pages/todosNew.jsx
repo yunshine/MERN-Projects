@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 // the useHistory hook is used for redirects....
 import { useHistory } from 'react-router-dom';
 import apis from '../api';
@@ -56,6 +57,7 @@ const TodosNew = () => {
                 {!isPending && <button>Submit Blog</button>}
                 {isPending && <button disabled>Adding Blog...</button>}
             </form>
+            <Link to={'/'}><button>GO HOME</button></Link>
         </div>
     );
 }

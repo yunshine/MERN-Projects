@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const TodosIndex = () => {
     return (
-
+        <Link to={'/todos/new'}><button>create a new todo</button></Link>
     );
 }
- 
+
 export default TodosIndex;
 
 /*
@@ -62,14 +64,15 @@ export default useFetch;
 
 
 
-        <div className="home">
-            {/* the template is created conditionally if isPending is true... */}
-            {isPending && <div><span className="loading">Loading...</span></div>}
-            {error && <div>{error}</div>}
-            {/* the template is created conditionally if blogs is not null... */}
-            {blogs && <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />}
-            {/* <BlogList blogs={blogs.filter(blog => blog.author === "Eunjoo")} title="Eunjoo's Blogs" /> */}
-            {/* <button onClick={() => setName("Eunjoo")}>change name</button> */}
-        </div>
 
 */
+
+// {/* <div className="home">
+//     {/* the template is created conditionally if isPending is true... */}
+//     {isPending && <div><span className="loading">Loading...</span></div>}
+//     {error && <div>{error}</div>}
+//     {/* the template is created conditionally if blogs is not null... */}
+//     {blogs && <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />}
+//     {/* <BlogList blogs={blogs.filter(blog => blog.author === "Eunjoo")} title="Eunjoo's Blogs" /> */}
+//     {/* <button onClick={() => setName("Eunjoo")}>change name</button> */}
+// </div> */}

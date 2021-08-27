@@ -7,7 +7,7 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/todos" exact component={TodosIndex} />
+                <Route path="/" exact component={TodosIndex} />
                 <Route path="/todos/new" exact component={TodosNew} />
             </Switch>
         </Router>
