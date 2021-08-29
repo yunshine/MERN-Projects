@@ -1,4 +1,5 @@
+import Home from './home';
 import TodosIndex from './todosIndex';
 import TodosNew from './todosNew';
 
-export { TodosIndex, TodosNew };
+export { Home, TodosIndex, TodosNew };
