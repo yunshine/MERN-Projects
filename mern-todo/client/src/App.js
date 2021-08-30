@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { TodosIndex, TodosNew } from './pages';
+import { Home, TodosIndex, TodosNew } from './pages';
 
 function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/" exact component={TodosIndex} />
+                <Route path="/" exact component={Home} />
                 <Route path="/todos/new" exact component={TodosNew} />
             </Switch>
         </Router>

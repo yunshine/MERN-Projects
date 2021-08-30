@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { TodosIndex, TodosNew } from '../components';
 
-const TodosIndex = () => {
+const Home = () => {
     const [todos, setTodos] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
     return (
-        <Link to={'/todos/new'}><button>create a new todo</button></Link>
+        <h1>hi testing</h1>
     );
 }
 
-export default TodosIndex;
+export default Home;
