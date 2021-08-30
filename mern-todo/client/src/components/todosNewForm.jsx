@@ -20,7 +20,7 @@ const TodosNew = () => {
         setIsPending(true);
 
         // how to make a post request in React...
-        fetch('http://localhost:8080/todos/create', {
+        fetch('http://localhost:3000/api/todos/create', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(todo)
