@@ -28,8 +28,11 @@ const TodosNew = () => {
             console.log("new todo created...");
             setIsPending(false);
             // how to use the useHistory hook to redirect to a specific page...
-            history.push('/')
+            // history.push('/')
         });
+
+        setTask("");
+        setNote("");
     }
 
     return (
@@ -54,7 +57,7 @@ const TodosNew = () => {
                     onChange={(e) => setNote(e.target.value)}
                 ></textarea>
 
-                {!isPending && <button>Submit Blog</button>}
+                {!isPending && <button>Add New Todo</button>}
                 {isPending && <button disabled>Adding Blog...</button>}
             </form>
             <Link to={'/'}><button>GO HOME</button></Link>

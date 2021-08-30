@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { TodosIndex, TodosNew } from '../components';
+import { TodosIndex, TodosNewForm } from '../components';
 
 const Home = () => {
     const [todos, setTodos] = useState(null);
@@ -8,7 +8,10 @@ const Home = () => {
     const [error, setError] = useState(null);
 
     return (
-        <h1>hi testing</h1>
+        <div className="Home">
+            <h1>hi testing</h1>
+            <TodosNewForm />
+        </div>
     );
 }
 
