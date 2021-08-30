@@ -7,7 +7,9 @@ const TodosIndex = () => {
     const [error, setError] = useState(null);
 
     return (
-        <Link to={'/todos/new'}><button>create a new todo</button></Link>
+        <div className="TodosIndex">
+            <h1>this is the todosindex...</h1>
+        </div>
     );
 }
 

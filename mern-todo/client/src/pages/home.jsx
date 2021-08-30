@@ -11,6 +11,7 @@ const Home = () => {
         <div className="Home">
             <h1>hi testing</h1>
             <TodosNewForm />
+            <TodosIndex />
         </div>
     );
 }
