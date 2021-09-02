@@ -13,44 +13,44 @@ const TodosNew = () => {
     // first, to use the useHistory hook, you need to invoke the hook...
     const history = useHistory();
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        const todo = { task, note, isComplete };
-
-        setIsPending(true);
-
-        // how to make a post request in React...
-        fetch('http://localhost:3000/api/todos/create', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(todo)
-        }).then(() => {
-            console.log("new todo created...");
-            setIsPending(false);
-            // how to use the useHistory hook to redirect to a specific page...
-            // history.push('/')
-        });
-
-        setTask("");
-        setNote("");
-    }
-
-    // const handleSubmit = async (e) => {
+    // const handleSubmit = e => {
     //     e.preventDefault();
     //     const todo = { task, note, isComplete };
-    //     const payload = todo;
-    //     window.alert(`yo test`);
-    //     console.log("payload: ", payload);
 
-    //     await api.createTodo(payload).then(res => {
-    //         window.alert(`New todo successfully created!`);
+    //     setIsPending(true);
+
+    //     // how to make a post request in React...
+    //     fetch('http://localhost:3000/api/todos/create', {
+    //         method: 'POST',
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify(todo)
+    //     }).then(() => {
+    //         console.log("new todo created...");
     //         setIsPending(false);
-    //         history.push('/');
+    //         // how to use the useHistory hook to redirect to a specific page...
+    //         // history.push('/')
     //     });
-        
+
     //     setTask("");
     //     setNote("");
     // }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const todo = { task, note, isComplete };
+        const payload = todo;
+        window.alert(`yo test`);
+        console.log("payload: ", payload);
+
+        await api.createTodo(payload).then(res => {
+            window.alert(`New todo successfully created!`);
+            setIsPending(false);
+            history.push('/');
+        });
+        
+        setTask("");
+        setNote("");
+    }
 
     return (
         <div className="TodosNew">
@@ -81,6 +81,7 @@ const TodosNew = () => {
         </div>
     );
 }
+
 export default TodosNew;
 
 

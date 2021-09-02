@@ -14,12 +14,14 @@ const TodosIndex = () => {
 
         console.log("there was a render that occurred, and useEffect ran...");
         setTimeout(() => {
-            fetch('http://localhost:8080/todos/list', { signal: abortController.signal })
+            
+            fetch('http://localhost:3000/api/todos/list', { signal: abortController.signal })
             // await api.getAllRecipes().
-                .then(res => {
-                    if (!res.ok) {
-                        throw Error('There was an error, and data could not be fetched...');
-                    }
+            .then(res => {
+                if (!res.ok) {
+                    throw Error('There was an error, and data could not be fetched...');
+                }
+                console.log("in fetch good...", res);
                     return res.json();
                 })
                 .then(data => {
