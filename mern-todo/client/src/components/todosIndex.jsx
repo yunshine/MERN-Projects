@@ -8,27 +8,60 @@ const TodosIndex = () => {
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
+    const fetchTodos = async () => {
         // use AbortController by 1) associating the AbortController with a specific fetch request by using as an option { signal: abortController.signal }, then we can 2) use the AbortController to stop the fetch...
         const abortController = new AbortController();
 
-        console.log("there was a render that occurred, and useEffect ran...");
         setTimeout(() => {
-            
+
             fetch('http://localhost:3000/api/todos/list', { signal: abortController.signal })
-            // await api.getAllRecipes().
-            .then(res => {
-                if (!res.ok) {
-                    throw Error('There was an error, and data could not be fetched...');
-                }
-                console.log("in fetch good...", res);
+                // await api.getAllRecipes().
+                .then(res => {
+                    if (!res.ok) {
+                        throw Error('There was an error, and data could not be fetched...');
+                    }
                     return res.json();
                 })
                 .then(data => {
                     setTodos(data);
                     setIsPending(false);
                     setError(null);
-                    console.log("testing todos: ", data)
+                    console.log("Todos Index Data: ", data);
+                })
+                .catch(err => {
+                    if (err.name === 'AbortError') {
+                        console.log("This fetch request has been aborted by abortController...");
+                    } else {
+                        setIsPending(false);
+                        setError(err.message);
+                    }
+                })
+        }, 500);
+
+        // ... the line below aborts the fetch that it is associated with
+        return () => abortController.abort();
+    }
+
+    useEffect(() => {
+        // use AbortController by 1) associating the AbortController with a specific fetch request by using as an option { signal: abortController.signal }, then we can 2) use the AbortController to stop the fetch...
+        const abortController = new AbortController();
+
+        console.log("there was a render that occurred, and useEffect ran...");
+        setTimeout(() => {
+
+            fetch('http://localhost:3000/api/todos/list', { signal: abortController.signal })
+                // await api.getAllRecipes().
+                .then(res => {
+                    if (!res.ok) {
+                        throw Error('There was an error, and data could not be fetched...');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    setTodos(data);
+                    setIsPending(false);
+                    setError(null);
+                    console.log("Todos Index Data: ", data);
                 })
                 .catch(err => {
                     if (err.name === 'AbortError') {

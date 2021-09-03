@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import api from '../api';
 
+// LOOK INTO USECONTEXT HOOK - need the index to update when we create a todo
+
 const TodosNew = () => {
     const [task, setTask] = useState('');
     const [note, setNote] = useState('');
@@ -47,7 +49,7 @@ const TodosNew = () => {
             setIsPending(false);
             history.push('/');
         });
-        
+
         setTask("");
         setNote("");
     }
@@ -86,7 +88,7 @@ export default TodosNew;
 
 
 // class RecipesCreate extends Component {
- 
+
 
 //     handleChangeInputName = async event => {
 //         const name = event.target.value;
