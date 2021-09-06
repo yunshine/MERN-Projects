@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { TodosList } from '../components';
+import { TodosList, Pending } from '../components';
 
 const TodosIndex = () => {
     const [todos, setTodos] = useState(null);
@@ -45,11 +45,9 @@ const TodosIndex = () => {
 
     return (
         <div className="TodosIndex">
-            {!todos && <p>no todos</p>}
-            {todos && <p>yes todos</p>}
+            {!todos && <Pending />}
             {todos && <TodosList todos={todos} /> }
-            
-
+            <br />
             <Link to={'/todos/new'}><button>create a new todo</button></Link>
         </div>
     );
