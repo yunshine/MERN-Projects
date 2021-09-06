@@ -1,5 +1,6 @@
 import Home from './home';
 import TodosIndex from './todosIndex';
-import TodosNew from './todosNew';
+import TodoNew from './todoNew';
+import TodoEdit from './todoEdit';
 
-export { Home, TodosIndex, TodosNew };
+export { Home, TodosIndex, TodoNew, TodoEdit };

@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { Home, TodosIndex, TodosNew } from './pages';
+import { Home, TodosIndex, TodoNew, TodoEdit } from './pages';
 
 function App() {
     return (
         <Router>
             <Switch>
                 <Route path="/" exact component={TodosIndex} />
-                <Route path="/todos/new" exact component={TodosNew} />
+                <Route path="/todos/new" exact component={TodoNew} />
+                <Route path="/todos/edit/:id" exact component={TodoEdit} />
                 <Route path="/home" exact component={Home} />
             </Switch>
         </Router>
