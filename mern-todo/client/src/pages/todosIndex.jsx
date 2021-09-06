@@ -1,13 +1,57 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { TodosList } from '../components';
 
 const TodosIndex = () => {
     const [todos, setTodos] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
+    useEffect(() => {
+        // use AbortController by 1) associating the AbortController with a specific fetch request by using as an option { signal: abortController.signal }, then we can 2) use the AbortController to stop the fetch...
+        const abortController = new AbortController();
+
+        console.log("there was a render that occurred, and useEffect ran...");
+        setTimeout(() => {
+
+            fetch('http://localhost:3000/api/todos/list', { signal: abortController.signal })
+                // await api.getAllRecipes().
+                .then(res => {
+                    if (!res.ok) {
+                        throw Error('There was an error, and data could not be fetched...');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    setTodos(data.data);
+                    setIsPending(false);
+                    setError(null);
+                    console.log("Todos Index Data: ", data);
+                })
+                .catch(err => {
+                    if (err.name === 'AbortError') {
+                        console.log("This fetch request has been aborted by abortController...");
+                    } else {
+                        setIsPending(false);
+                        setError(err.message);
+                    }
+                })
+        }, 750);
+
+        // ... the line below aborts the fetch that it is associated with
+        return () => abortController.abort();
+    }, []);
+    // dependency array options: [ ] an empty array like this will run the useEffect hook on only the initial render; [name] useEffect runs when the value for 'name' changes; [blogs] useEffect runs when the value for 'blogs' changes...
+
     return (
-        <Link to={'/todos/new'}><button>create a new todo</button></Link>
+        <div className="TodosIndex">
+            {!todos && <p>no todos</p>}
+            {todos && <p>yes todos</p>}
+            {todos && <TodosList todos={todos} /> }
+            
+
+            <Link to={'/todos/new'}><button>create a new todo</button></Link>
+        </div>
     );
 }
 
