@@ -13,7 +13,8 @@ const TodoEdit = (props) => {
     // first, to use the useHistory hook, you need to invoke the hook...
     const history = useHistory();
 
-    const id = props.match.params;
+    const id = props.match.params.id;
+    console.log("testing id: ", id)
 
     useEffect(() => {
         // use AbortController by 1) associating the AbortController with a specific fetch request by using as an option { signal: abortController.signal }, then we can 2) use the AbortController to stop the fetch...
@@ -22,7 +23,7 @@ const TodoEdit = (props) => {
         console.log("there was a render that occurred, and useEffect ran in todoEdit...");
         setTimeout(() => {
 
-            fetch('http://localhost:3000/api/todos/list', { signal: abortController.signal })
+            fetch(`http://localhost:3000/api/todos/${id}`, { signal: abortController.signal })
                 // await api.getAllRecipes().
                 .then(res => {
                     if (!res.ok) {
@@ -34,7 +35,7 @@ const TodoEdit = (props) => {
                     // setTodos(data.data);
                     // setIsPending(false);
                     // setError(null);
-                    console.log("Todos Index Data: ", data.data);
+                    console.log("One Todo Data: ", data);
                 })
                 .catch(err => {
                     if (err.name === 'AbortError') {

@@ -15,7 +15,9 @@ getTodos = async (req, res) => {
     }).catch(err => console.log(err))
 };
 
+/* show route controller - show one todo */
 getTodoById = async (req, res) => {
+    console.log("TESTING: ", req)
     await Todo.findOne({ _id: req.params.id }, (err, todo) => {
         if (err) {
             return res.status(400).json({ success: false, error: err });
@@ -27,7 +29,7 @@ getTodoById = async (req, res) => {
                 .json({ success: false, error: `Todo not found` })
         };
         return res.status(200).json({ success: true, data: todo });
-    }).catch(err => console.log(err))
+    }).catch(err => console.log("erorororro", err))
 };
 
 createTodo = (req, res) => {
@@ -122,7 +124,7 @@ deleteRecipe = async (req, res) => {
 
 module.exports = {
     getTodos,
-    getToDoById,
+    getTodoById,
     createTodo,
     updateRecipe,
     deleteRecipe
