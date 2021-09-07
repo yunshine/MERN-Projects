@@ -8,12 +8,13 @@ const TodosList = (props) => {
                     <p>
                         <Link to={'#'}><button>{todo.isComplete ? "done" : "O"}</button></Link>
                         {todo.task} - {todo.note} - {todo._id}
-                        <Link to={'#'}><button>edit</button></Link>
+                        <Link to={`/todos/edit/${todo._id}`}><button>edit</button></Link>
                         <Link to={'#'}><button>delete</button></Link>
                     </p>
                 </div>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     );
 }
 

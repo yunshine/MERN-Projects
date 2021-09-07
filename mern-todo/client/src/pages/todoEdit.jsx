@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import apis from '../api';
 
-const TodoEdit = () => {
+const TodoEdit = (props) => {
     const [task, setTask] = useState('');
     const [note, setNote] = useState('');
     const [isComplete, setIsComplete] = useState(false);
@@ -13,6 +13,8 @@ const TodoEdit = () => {
     // first, to use the useHistory hook, you need to invoke the hook...
     const history = useHistory();
 
+    const id = props.match.params;
+
     const handleSubmit = e => {
         e.preventDefault();
         const todo = { task, note, isComplete };
@@ -20,8 +22,8 @@ const TodoEdit = () => {
         setIsPending(true);
 
         // how to make a post request in React...
-        fetch('http://localhost:8080/todos/create', {
-            method: 'POST',
+        fetch(`http://localhost:8080/todos/create/${id}`, {
+            method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(todo)
         }).then(() => {
@@ -34,7 +36,7 @@ const TodoEdit = () => {
 
     return (
         <div className="TodoEdit">
-            <h2>Edita New Todo</h2>
+            <h2>Edit This Todo</h2>
 
             {/* how to submit a form in React... */}
             <form onSubmit={handleSubmit}>

@@ -26,7 +26,7 @@ const TodosIndex = () => {
                     setTodos(data.data);
                     setIsPending(false);
                     setError(null);
-                    console.log("Todos Index Data: ", data);
+                    console.log("Todos Index Data: ", data.data);
                 })
                 .catch(err => {
                     if (err.name === 'AbortError') {
@@ -46,7 +46,7 @@ const TodosIndex = () => {
     return (
         <div className="TodosIndex">
             {!todos && <Pending />}
-            {todos && <TodosList todos={todos} /> }
+            {todos && <TodosList todos={todos} />}
             <br />
             <Link to={'/todos/new'}><button>create a new todo</button></Link>
         </div>
