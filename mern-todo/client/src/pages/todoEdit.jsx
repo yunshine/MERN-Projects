@@ -8,23 +8,23 @@ const TodoEdit = (props) => {
     const [task, setTask] = useState('');
     const [note, setNote] = useState('');
     const [isComplete, setIsComplete] = useState(false);
+    const [todo, setTodo] = useState(null);
+    const [error, setError] = useState(null);
     // isPending used for dynamic text on form submit button...
     const [isPending, setIsPending] = useState(false);
     // first, to use the useHistory hook, you need to invoke the hook...
     const history = useHistory();
 
     const id = props.match.params.id;
-    console.log("testing id: ", id)
 
     useEffect(() => {
         // use AbortController by 1) associating the AbortController with a specific fetch request by using as an option { signal: abortController.signal }, then we can 2) use the AbortController to stop the fetch...
         const abortController = new AbortController();
 
-        console.log("there was a render that occurred, and useEffect ran in todoEdit...");
+        console.log("there was a render that occurred, and useEffect ran in todoEdit.jsx file...");
         setTimeout(() => {
 
             fetch(`http://localhost:3000/api/todos/${id}`, { signal: abortController.signal })
-                // await api.getAllRecipes().
                 .then(res => {
                     if (!res.ok) {
                         throw Error('There was an error, and data could not be fetched...');
@@ -32,17 +32,20 @@ const TodoEdit = (props) => {
                     return res.json();
                 })
                 .then(data => {
-                    // setTodos(data.data);
-                    // setIsPending(false);
-                    // setError(null);
-                    console.log("One Todo Data: ", data);
+                    setTodo(data.data);
+                    setIsPending(false);
+                    setError(null);
+                    setTask(data.data.task);
+                    setNote(data.data.note);
+                    setIsComplete(data.data.isComplete);
+                    console.log("One Todo Data: ", data.data);
                 })
                 .catch(err => {
                     if (err.name === 'AbortError') {
                         console.log("This fetch request has been aborted by abortController...");
                     } else {
-                        // setIsPending(false);
-                        // setError(err.message);
+                        setIsPending(false);
+                        setError(err.message);
                     }
                 })
         }, 250);
