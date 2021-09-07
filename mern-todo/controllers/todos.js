@@ -15,6 +15,21 @@ getTodos = async (req, res) => {
     }).catch(err => console.log(err))
 };
 
+getTodoById = async (req, res) => {
+    await Todo.findOne({ _id: req.params.id }, (err, todo) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err });
+        };
+
+        if (!todo) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Todo not found` })
+        };
+        return res.status(200).json({ success: true, data: todo });
+    }).catch(err => console.log(err))
+};
+
 createTodo = (req, res) => {
     const body = req.body;
 
@@ -104,27 +119,13 @@ deleteRecipe = async (req, res) => {
     }).catch(err => console.log(err));
 };
 
-getRecipeById = async (req, res) => {
-    await Recipe.findOne({ _id: req.params.id }, (err, recipe) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err });
-        };
-
-        if (!recipe) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Recipe not found` })
-        };
-        return res.status(200).json({ success: true, data: recipe });
-    }).catch(err => console.log(err))
-};
 
 module.exports = {
     getTodos,
+    getToDoById,
     createTodo,
     updateRecipe,
-    deleteRecipe,
-    getRecipeById,
+    deleteRecipe
 };
 
 

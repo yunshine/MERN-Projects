@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 // the useHistory hook is used for redirects....
 import { useHistory } from 'react-router-dom';
@@ -15,12 +15,46 @@ const TodoEdit = (props) => {
 
     const id = props.match.params;
 
+    useEffect(() => {
+        // use AbortController by 1) associating the AbortController with a specific fetch request by using as an option { signal: abortController.signal }, then we can 2) use the AbortController to stop the fetch...
+        const abortController = new AbortController();
+
+        console.log("there was a render that occurred, and useEffect ran in todoEdit...");
+        setTimeout(() => {
+
+            fetch('http://localhost:3000/api/todos/list', { signal: abortController.signal })
+                // await api.getAllRecipes().
+                .then(res => {
+                    if (!res.ok) {
+                        throw Error('There was an error, and data could not be fetched...');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    // setTodos(data.data);
+                    // setIsPending(false);
+                    // setError(null);
+                    console.log("Todos Index Data: ", data.data);
+                })
+                .catch(err => {
+                    if (err.name === 'AbortError') {
+                        console.log("This fetch request has been aborted by abortController...");
+                    } else {
+                        // setIsPending(false);
+                        // setError(err.message);
+                    }
+                })
+        }, 250);
+
+        // ... the line below aborts the fetch that it is associated with
+        return () => abortController.abort();
+    }, []);
+
     const handleSubmit = e => {
         e.preventDefault();
         const todo = { task, note, isComplete };
 
         setIsPending(true);
-
         // how to make a post request in React...
         fetch(`http://localhost:8080/todos/create/${id}`, {
             method: 'PUT',

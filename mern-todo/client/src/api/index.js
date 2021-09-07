@@ -6,8 +6,8 @@ const api = axios.create({
 });
 
 export const getAllTodos = () => api.get(`/todos/list`);
-export const createTodo = payload => api.post(`/todos/create`, payload);
 export const getTodoById = id => api.get(`/todos/${id}`);
+export const createTodo = payload => api.post(`/todos/create`, payload);
 export const updateTodoById = (id, payload) => api.put(`/todos/${id}`, payload);
 export const deleteTodoById = id => api.delete(`/todos/${id}`);
 
@@ -15,8 +15,8 @@ export const deleteTodoById = id => api.delete(`/todos/${id}`);
 
 const apis = {
     getAllTodos,
-    createTodo,
     getTodoById,
+    createTodo,
     updateTodoById,
     deleteTodoById
     // registerUser
