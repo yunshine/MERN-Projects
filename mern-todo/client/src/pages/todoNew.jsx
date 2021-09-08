@@ -54,8 +54,8 @@ const TodoNew = () => {
                     onChange={(e) => setNote(e.target.value)}
                 ></textarea>
 
-                {!isPending && <button>Submit Blog</button>}
-                {isPending && <button disabled>Adding Blog...</button>}
+                {!isPending && <button>Submit Todo</button>}
+                {isPending && <button disabled>Adding Todo...</button>}
             </form>
             <Link to={'/'}><button>GO HOME</button></Link>
         </div>
@@ -65,7 +65,7 @@ export default TodoNew;
 
 
 // class RecipesCreate extends Component {
- 
+
 
 //     handleChangeInputName = async event => {
 //         const name = event.target.value;

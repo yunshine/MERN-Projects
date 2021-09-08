@@ -14,13 +14,11 @@ const TodoEdit = (props) => {
     const [isPending, setIsPending] = useState(false);
     // first, to use the useHistory hook, you need to invoke the hook...
     const history = useHistory();
-
     const id = props.match.params.id;
 
     useEffect(() => {
         // use AbortController by 1) associating the AbortController with a specific fetch request by using as an option { signal: abortController.signal }, then we can 2) use the AbortController to stop the fetch...
         const abortController = new AbortController();
-
         console.log("there was a render that occurred, and useEffect ran in todoEdit.jsx file...");
         setTimeout(() => {
 
@@ -38,7 +36,7 @@ const TodoEdit = (props) => {
                     setTask(data.data.task);
                     setNote(data.data.note);
                     setIsComplete(data.data.isComplete);
-                    console.log("One Todo Data: ", data.data);
+                    console.log("One Todo's Data: ", data.data);
                 })
                 .catch(err => {
                     if (err.name === 'AbortError') {
@@ -57,18 +55,29 @@ const TodoEdit = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         const todo = { task, note, isComplete };
+        console.log("todo being edited... ", todo)
 
         setIsPending(true);
         // how to make a post request in React...
-        fetch(`http://localhost:8080/todos/create/${id}`, {
+        fetch(`http://localhost:3000/api/todos/${id}`, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(todo)
         }).then(() => {
-            console.log("new todo created...");
+            console.log("todo has been updated...");
             setIsPending(false);
             // how to use the useHistory hook to redirect to a specific page...
-            history.push('/')
+            history.push(`/todos/edit/${id}`);
+        });
+    }
+
+    handleUpdateRecipe = async () => {
+        const { id, name, images, description, ingredients, directions } = this.state
+        const payload = { name, images, description, ingredients, directions };
+
+        await api.updateRecipeById(id, payload).then(res => {
+            window.alert(`Recipe successfuly updated`);
+            this.props.history.push(`/recipes/${id}`)
         });
     }
 
@@ -94,8 +103,8 @@ const TodoEdit = (props) => {
                     onChange={(e) => setNote(e.target.value)}
                 ></textarea>
 
-                {!isPending && <button>Submit Blog</button>}
-                {isPending && <button disabled>Adding Blog...</button>}
+                {!isPending && <button>Edit Todo</button>}
+                {isPending && <button disabled>Updating Todo...</button>}
             </form>
             <Link to={'/'}><button>GO HOME</button></Link>
         </div>
