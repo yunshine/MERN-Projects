@@ -52,32 +52,37 @@ const TodoEdit = (props) => {
         return () => abortController.abort();
     }, []);
 
-    const handleSubmit = e => {
+    // const handleSubmit = e => {
+    //     e.preventDefault();
+    //     const todo = { task, note, isComplete };
+    //     console.log("todo being edited... ", todo)
+
+    //     setIsPending(true);
+    //     // how to make a post request in React...
+    //     fetch(`http://localhost:3000/api/todos/${id}`, {
+    //         method: 'PUT',
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify(todo)
+    //     }).then(() => {
+    //         console.log("todo has been updated...");
+    //         setIsPending(false);
+    //         // how to use the useHistory hook to redirect to a specific page...
+    //         history.push(`/todos/edit/${id}`);
+    //     });
+    // }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         const todo = { task, note, isComplete };
-        console.log("todo being edited... ", todo)
+        // const payload = JSON.stringify(todo);
+        const payload = todo;
+        console.log("todo being edited... ", payload);
 
-        setIsPending(true);
-        // how to make a post request in React...
-        fetch(`http://localhost:3000/api/todos/${id}`, {
-            method: 'PUT',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(todo)
-        }).then(() => {
-            console.log("todo has been updated...");
-            setIsPending(false);
-            // how to use the useHistory hook to redirect to a specific page...
-            history.push(`/todos/edit/${id}`);
-        });
-    }
-
-    handleUpdateRecipe = async () => {
-        const { id, name, images, description, ingredients, directions } = this.state
-        const payload = { name, images, description, ingredients, directions };
-
-        await api.updateRecipeById(id, payload).then(res => {
-            window.alert(`Recipe successfuly updated`);
-            this.props.history.push(`/recipes/${id}`)
+        await apis.updateTodoById(id, payload).then(res => {
+            console.log('Todo successfuly updated');
+            // props.history.push(`/todos/${id}`);
+            props.history.push(`/todos/list`);
         });
     }
 

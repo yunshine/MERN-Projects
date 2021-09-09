@@ -32,6 +32,7 @@ getTodoById = async (req, res) => {
     }).catch(err => console.log("erorororro", err))
 };
 
+/* create route controller - create and save one todo */
 createTodo = (req, res) => {
     const body = req.body;
 
@@ -65,7 +66,8 @@ createTodo = (req, res) => {
         })
 };
 
-updateRecipe = async (req, res) => {
+/* update route controller - update/edit and save one todo */
+updateTodo = async (req, res) => {
     const body = req.body;
 
     if (!body) {
@@ -75,31 +77,29 @@ updateRecipe = async (req, res) => {
         });
     };
 
-    Recipe.findOne({ _id: req.params.id }, (err, recipe) => {
+    Todo.findOne({ _id: req.params.id }, (err, todo) => {
         if (err) {
             return res.status(404).json({
                 err,
-                message: 'Recipe not found!',
+                message: 'Todo not found!',
             });
         };
-        recipe.name = body.name;
-        recipe.images = body.images;
-        recipe.description = body.description;
-        recipe.ingredients = body.ingredients;
-        recipe.directions = body.directions;
-        recipe
+        todo.task = body.name;
+        todo.note = body.note;
+        todo.isComplete = body.isComplete;
+        todo
             .save()
             .then(() => {
                 return res.status(200).json({
                     success: true,
-                    id: recipe._id,
-                    message: 'Recipe updated!',
+                    id: todo._id,
+                    message: 'Todo updated!',
                 });
             })
             .catch(error => {
                 return res.status(404).json({
                     error,
-                    message: 'Recipe not updated!',
+                    message: 'Todo not updated!',
                 });
             })
     });
@@ -126,7 +126,7 @@ module.exports = {
     getTodos,
     getTodoById,
     createTodo,
-    updateRecipe,
+    updateTodo,
     deleteRecipe
 };
 
