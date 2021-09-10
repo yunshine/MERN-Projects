@@ -20,7 +20,7 @@ const TodosList = (props) => {
             {props.todos.map(todo => (
                 <div className="TodoListTodo">
                     <p>
-                        <Link to={'#'}><button>{todo.isComplete ? "done" : "O"}</button></Link>
+                        <Link to={'#'}><button>{todo.isComplete ? "✅" : "○"}</button></Link>
                         {todo.task} - {todo.note} - {todo._id}
                         <Link to={`/todos/edit/${todo._id}`}><button>edit</button></Link>
                         <button 
