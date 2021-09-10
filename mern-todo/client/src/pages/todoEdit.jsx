@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 // the useHistory hook is used for redirects....
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import apis from '../api';
 
 const TodoEdit = (props) => {
@@ -13,7 +13,7 @@ const TodoEdit = (props) => {
     // isPending used for dynamic text on form submit button...
     const [isPending, setIsPending] = useState(false);
     // first, to use the useHistory hook, you need to invoke the hook...
-    const history = useHistory();
+    // const history = useHistory();
     const id = props.match.params.id;
 
     useEffect(() => {
@@ -58,7 +58,7 @@ const TodoEdit = (props) => {
     //     console.log("todo being edited... ", todo)
 
     //     setIsPending(true);
-    //     // how to make a post request in React...
+    //     // one way to make a put request in React...
     //     fetch(`http://localhost:3000/api/todos/${id}`, {
     //         method: 'PUT',
     //         headers: { "Content-Type": "application/json" },
@@ -71,7 +71,7 @@ const TodoEdit = (props) => {
     //     });
     // }
 
-    const handleSubmit = async (e) => {
+    const handleEdit = async (e) => {
         e.preventDefault();
 
         const todo = { task, note, isComplete };
@@ -79,8 +79,25 @@ const TodoEdit = (props) => {
         const payload = todo;
         console.log("todo being edited... ", payload);
 
+        // one way to make a put request in React...
         await apis.updateTodoById(id, payload).then(res => {
             console.log('Todo successfuly updated');
+            // props.history.push(`/todos/${id}`);
+            props.history.push('/');
+        });
+    }
+
+    const handleDelete = async (e) => {
+        // const todo = { task, note, isComplete };
+        // const payload = JSON.stringify(todo);
+        // const payload = todo;
+        e.preventDefault();
+
+        console.log("todo being deleted... ");
+
+        // one way to make a delete request in React...
+        await apis.deleteTodoById(id).then(res => {
+            console.log('Todo successfuly deleted; id: ', id);
             // props.history.push(`/todos/${id}`);
             props.history.push('/');
         });
@@ -91,7 +108,7 @@ const TodoEdit = (props) => {
             <h2>Edit This Todo</h2>
 
             {/* how to submit a form in React... */}
-            <form onSubmit={handleSubmit}>
+            <form>
                 <label>Todo Item</label>
                 {/* how to use forms in React... */}
                 <input
@@ -108,7 +125,8 @@ const TodoEdit = (props) => {
                     onChange={(e) => setNote(e.target.value)}
                 ></textarea>
 
-                {!isPending && <button>Edit Todo</button>}
+                {!isPending && <button onClick={handleEdit}>Edit Todo</button>}
+                {!isPending && <button onClick={handleDelete}>Delete Todo</button>}
                 {isPending && <button disabled>Updating Todo...</button>}
             </form>
             <Link to={'/'}><button>GO HOME</button></Link>

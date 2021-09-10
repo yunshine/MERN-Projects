@@ -36,7 +36,7 @@ const TodosIndex = () => {
                         setError(err.message);
                     }
                 })
-        }, 750);
+        }, 500);
 
         // ... the line below aborts the fetch that it is associated with
         return () => abortController.abort();

@@ -105,19 +105,19 @@ updateTodo = async (req, res) => {
     });
 };
 
-deleteRecipe = async (req, res) => {
-    await Recipe.findOneAndDelete({ _id: req.params.id }, (err, recipe) => {
+deleteTodo = async (req, res) => {
+    await Todo.findOneAndDelete({ _id: req.params.id }, (err, todo) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
 
-        if (!recipe) {
+        if (!todo) {
             return res
                 .status(404)
-                .json({ success: false, error: `Recipe not found` });
+                .json({ success: false, error: `Todo not found` });
         };
 
-        return res.status(200).json({ success: true, data: recipe });
+        return res.status(200).json({ success: true, data: todo });
     }).catch(err => console.log(err));
 };
 
@@ -127,7 +127,7 @@ module.exports = {
     getTodoById,
     createTodo,
     updateTodo,
-    deleteRecipe
+    deleteTodo
 };
 
 
