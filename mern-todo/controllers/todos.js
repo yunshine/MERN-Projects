@@ -84,7 +84,7 @@ updateTodo = async (req, res) => {
                 message: 'Todo not found!',
             });
         };
-        todo.task = body.name;
+        todo.task = body.task;
         todo.note = body.note;
         todo.isComplete = body.isComplete;
         todo
