@@ -82,7 +82,7 @@ const TodoEdit = (props) => {
         await apis.updateTodoById(id, payload).then(res => {
             console.log('Todo successfuly updated');
             // props.history.push(`/todos/${id}`);
-            props.history.push(`/todos/list`);
+            props.history.push('/');
         });
     }
 
