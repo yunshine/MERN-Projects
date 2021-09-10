@@ -1,24 +1,20 @@
 import { Link } from "react-router-dom";
+import apis from '../api';
 
 const TodosList = (props) => {
-    // const history = useHistory();
-    
-    const handleDelete = async (e) => {
-        // e.preventDefault();
-
-        // const todo = { task, note, isComplete };
-        // // const payload = JSON.stringify(todo);
-        // const payload = todo;
+        
+    const handleDelete = async (e, id) => {
+        e.preventDefault();
         console.log("todo being deleted... ");
 
-        // one way to make a put request in React...
-        // await apis.updateTodoById(id, payload).then(res => {
-        //     console.log('Todo successfuly updated');
-        //     // props.history.push(`/todos/${id}`);
-            // props.history.push('/');
-        // });
+        // one way to make a delete request in React...
+        await apis.deleteTodoById(id).then(res => {
+            console.log('Todo successfuly deleted; id: ', id);
+            window.location.reload();
+        });
     }
 
+    console.log("todos: ", props.todos)
     return (
         <div className="TodosList">
             {props.todos.map(todo => (
@@ -27,7 +23,10 @@ const TodosList = (props) => {
                         <Link to={'#'}><button>{todo.isComplete ? "done" : "O"}</button></Link>
                         {todo.task} - {todo.note} - {todo._id}
                         <Link to={`/todos/edit/${todo._id}`}><button>edit</button></Link>
-                        <button onClick={handleDelete}>delete</button>
+                        <button 
+                            onClick={(e) => {handleDelete(e, todo._id)}}>
+                            delete
+                        </button>
                     </p>
                 </div>
             ))

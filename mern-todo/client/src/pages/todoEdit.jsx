@@ -88,9 +88,6 @@ const TodoEdit = (props) => {
     }
 
     const handleDelete = async (e) => {
-        // const todo = { task, note, isComplete };
-        // const payload = JSON.stringify(todo);
-        // const payload = todo;
         e.preventDefault();
 
         console.log("todo being deleted... ");
@@ -98,7 +95,6 @@ const TodoEdit = (props) => {
         // one way to make a delete request in React...
         await apis.deleteTodoById(id).then(res => {
             console.log('Todo successfuly deleted; id: ', id);
-            // props.history.push(`/todos/${id}`);
             props.history.push('/');
         });
     }
