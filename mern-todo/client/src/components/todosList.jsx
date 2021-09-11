@@ -14,6 +14,22 @@ const TodosList = (props) => {
         });
     }
 
+    const handleCompleteToggle = async (e) => {
+        e.preventDefault();
+
+        const todo = { task, note, isComplete };
+        // const payload = JSON.stringify(todo);
+        const payload = todo;
+        console.log("todo being edited... ", payload);
+
+        // one way to make a put request in React...
+        await apis.updateTodoById(id, payload).then(res => {
+            console.log('Todo successfuly updated');
+            // props.history.push(`/todos/${id}`);
+            props.history.push('/');
+        });
+    }
+
     console.log("todos: ", props.todos)
     return (
         <div className="TodosList">
