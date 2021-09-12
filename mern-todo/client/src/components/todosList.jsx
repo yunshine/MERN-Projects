@@ -14,7 +14,7 @@ const TodosList = (props) => {
         });
     }
 
-    const handleCompleteToggle = async (e) => {
+    const handleCompleteToggle = async (e, todoId) => {
         e.preventDefault();
 
         const todo = { task, note, isComplete };
@@ -36,7 +36,11 @@ const TodosList = (props) => {
             {props.todos.map(todo => (
                 <div className="TodoListTodo">
                     <p>
-                        <Link to={'#'}><button>{todo.isComplete ? "✅" : "○"}</button></Link>
+                        <button 
+                            onClick={(e) => {
+                            handleCompleteToggle(e, todo._id);}}>
+                            {todo.isComplete ? "✅" : "○"}
+                        </button>
                         {todo.task} - {todo.note} - {todo._id}
                         <Link to={`/todos/edit/${todo._id}`}><button>edit</button></Link>
                         <button 
