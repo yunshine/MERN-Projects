@@ -14,17 +14,22 @@ const TodosList = (props) => {
         });
     }
 
-    const handleCompleteToggle = async (e, todoId) => {
+    const handleCompleteToggle = async (e, todo) => {
         e.preventDefault();
+
+        const id = todo._id;
+        const task = todo.task;
+        const note = todo.note;
+        const isComplete = !todo.isComplete;
 
         const todo = { task, note, isComplete };
         // const payload = JSON.stringify(todo);
         const payload = todo;
-        console.log("todo being edited... ", payload);
+        console.log("todo isComplete being toggled... ", payload);
 
         // one way to make a put request in React...
         await apis.updateTodoById(id, payload).then(res => {
-            console.log('Todo successfuly updated');
+            console.log('Todo isComplete successfuly toggled');
             // props.history.push(`/todos/${id}`);
             props.history.push('/');
         });
@@ -44,7 +49,7 @@ const TodosList = (props) => {
                         {todo.task} - {todo.note} - {todo._id}
                         <Link to={`/todos/edit/${todo._id}`}><button>edit</button></Link>
                         <button 
-                            onClick={(e) => {handleDelete(e, todo._id)}}>
+                            onClick={(e) => {handleDelete(e, todo)}}>
                             delete
                         </button>
                     </p>
