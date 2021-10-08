@@ -14,16 +14,16 @@ const TodosList = (props) => {
         });
     }
 
-    const handleCompleteToggle = async (e, todo) => {
+    const handleCompleteToggle = async (e, todoItem) => {
         e.preventDefault();
 
-        const id = todo._id;
-        const task = todo.task;
-        const note = todo.note;
-        const isComplete = !todo.isComplete;
+        const id = todoItem._id;
+        const task = todoItem.task;
+        const note = todoItem.note;
+        const isComplete = !todoItem.isComplete;
 
         const todo = { task, note, isComplete };
-        // const payload = JSON.stringify(todo);
+        // const payload = JSON.stringify(todoItem);
         const payload = todo;
         console.log("todo isComplete being toggled... ", payload);
 
