@@ -121,7 +121,7 @@ const TodoEdit = (props) => {
                     onChange={(e) => setNote(e.target.value)}
                 ></textarea>
 
-                {!isPending && <button onClick={handleEdit}>Edit Todo</button>}
+                {!isPending && <button onClick={handleEdit}>Update Todo</button>}
                 {!isPending && <button onClick={handleDelete}>Delete Todo</button>}
                 {isPending && <button disabled>Updating Todo...</button>}
             </form>
