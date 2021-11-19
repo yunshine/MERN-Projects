@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override'); /* Lets you use HTTP verbs such as PUT or DELETE in places not supported in the client */
 const bodyParser = require('body-parser'); /* Parses incoming request bodies */
 const cors = require('cors');
@@ -14,6 +15,7 @@ if (process.env.NODE_ENV !== "production") {
 
 
 // app.use(express.static('public'));
+app.use(cookieParser());
 app.use(methodOverride('_method'));
 app.use(expressSanitizer());
 app.use(express.json()); /* Needed for incoming POST and PUT requests, because in both these requests you are sending data (in the form of some data object) to the server and you are asking the server to accept or store that data (object), which is enclosed in the body (i.e. req.body) of that (POST or PUT) Request */
