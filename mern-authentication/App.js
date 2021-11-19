@@ -23,14 +23,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // this will select the database url based on the environment that runs it...
-const url = process.env.DATABASEURL || 'mongodb://localhost:27017/mern-todo';
+const url = process.env.DATABASEURL || 'mongodb://localhost:27017/mern-authentication';
 mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false
 })
-    .then(() => console.log('The MERN-Todo app is connected to the Mongo database!'))
+    .then(() => console.log('Your MERN-Authentication project is connected to the Mongo database!'))
     .catch(error => console.log("Mongo database not connected...", error.message));
 
 // const userRouter = require('./routes/User');
@@ -42,14 +42,14 @@ mongoose.connect(url, {
 // app.use(indexRoutes);
 
 app.get('/', (req, res) => {
-    res.send('MERN Todo App server connected and listening...')
+    res.send("The MERN Authentication project's server is connected and listening...")
 });
 
 // todo routes & todo API endpoints...
 // app.use('/api', todosRouter);
 
 app.listen(3000, () => {
-    console.log("Welcome to MERN-Todo! You've created a server using Express. The server has started and is now listening on port 3000...");
+    console.log("Welcome to your MERN Authentication project! You've created a server using Express. The server has started and is now listening on port 3000...");
 });
 
 
