@@ -13,6 +13,7 @@ const cookieExtractor = req => {
 
 // used for authorization when protecting a resource...
 passport.use(new JwtStrategy({
+    s
     jwtFromRequest: cookieExtractor,
     secretOrKey: "mernauthsecret"
 }, (payload, done) => {
