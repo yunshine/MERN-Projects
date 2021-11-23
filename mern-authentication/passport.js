@@ -13,9 +13,8 @@ const cookieExtractor = req => {
 
 // used for authorization when protecting a resource...
 passport.use(new JwtStrategy({
-    s
     jwtFromRequest: cookieExtractor,
-    secretOrKey: "mernauthsecret"
+    secretOrKey: process.env.REACT_APP_JWT_SECRET
 }, (payload, done) => {
     User.findById({ _id: payload.sub }, (err, user) => {
         if (err) {
