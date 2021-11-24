@@ -35,8 +35,8 @@ mongoose.connect(url, {
     .then(() => console.log('Your MERN-Authentication project is connected to the Mongo database!'))
     .catch(error => console.log("Mongo database not connected...", error.message));
 
-// const userRouter = require('./routes/User');
-// app.use('/user', userRouter);
+const userRouter = require('./routes/users');
+app.use('/user', userRouter);
 
 // app.use(cafeRoutes);
 // app.use(commentRoutes);
