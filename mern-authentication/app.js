@@ -28,9 +28,9 @@ app.use(bodyParser.json());
 const url = process.env.DATABASEURL || 'mongodb://localhost:27017/mern-authentication';
 mongoose.connect(url, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
+    useUnifiedTopology: true
+    // useCreateIndex: true,
+    // useFindAndModify: false
 })
     .then(() => console.log('Your MERN-Authentication project is connected to the Mongo database!'))
     .catch(error => console.log("Mongo database not connected...", error.message));

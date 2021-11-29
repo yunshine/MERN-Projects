@@ -11,7 +11,7 @@ const { json } = require('express');
 
 const signToken = userID => {
     return JWT.sign({
-        iss: "mernauth",
+        iss: "mern-authentication",
         sub: userID,
     }, process.env.REACT_APP_JWT_SECRET, { expiresIn: "1h" });
 }
@@ -25,7 +25,7 @@ userRouter.post('/register', (req, res) => {
         if (user) {
             res.status(400).json({ message: { msgBody: "That username is already taken", msgError: true } });
         } else {
-            const newUser = new User({ username, password });
+            const newUser = new User({ username, password, role });
             newUser.save(err => {
                 if (err) {
                     res.status(500).json({ message: { msgBody: "An error has occurred", msgError: true } });
