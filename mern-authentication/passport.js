@@ -33,7 +33,7 @@ passport.use(new LocalStrategy((username, password, done) => {
     User.findOne({ username }, (err, user) => {
         // something went wrong with the database...
         if (err) {
-            return done(err);
+            return done("login error...", err);
         }
 
         // if no user exists...

@@ -6,6 +6,7 @@ const methodOverride = require('method-override'); /* Lets you use HTTP verbs su
 const bodyParser = require('body-parser'); /* Parses incoming request bodies */
 const cors = require('cors');
 const expressSanitizer = require('express-sanitizer'); /* Sanitizes data from inputs */
+const passport = require('passport');
 // const todosRouter = require('./routes/todos');
 
 if (process.env.NODE_ENV !== "production") {
@@ -35,6 +36,7 @@ mongoose.connect(url, {
     .then(() => console.log('Your MERN-Authentication project is connected to the Mongo database!'))
     .catch(error => console.log("Mongo database not connected...", error.message));
 
+app.use(passport.initialize());
 const userRouter = require('./routes/users');
 app.use('/user', userRouter);
 
