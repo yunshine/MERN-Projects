@@ -3,7 +3,7 @@ import AuthService from '../services/AuthService';
 // import Message from './Message';
 import { AuthContext } from '../contexts/AuthContext';
 
-const Login = (props) => {
+const LoginForm = (props) => {
     const [user, setUser] = useState({ username: '', password: '' });
     // const [message, setMessage] = useState(null);
     const authContext = useContext(AuthContext);
@@ -56,4 +56,4 @@ const Login = (props) => {
     );
 }
 
-export default Login;
+export default LoginForm;
