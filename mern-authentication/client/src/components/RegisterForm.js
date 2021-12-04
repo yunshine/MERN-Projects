@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import AuthService from '../services/AuthService';
-// import Message from './Message';
+import Message from './Message';
 
 const RegisterForm = (props) => {
     const [user, setUser] = useState({ username: '', password: '', role: '' });
-    // const [message, setMessage] = useState(null);
+    const [message, setMessage] = useState(null);
     let timerID = useRef(null);
 
     useEffect(() => {
@@ -23,14 +23,14 @@ const RegisterForm = (props) => {
         console.log("form submitted...");
         AuthService.register(user).then(data => {
             console.log("Data from Register.js: ", data);
-            // const { message } = data;
-            // setMessage(message);
+            const { message } = data;
+            setMessage(message);
             resetForm();
-            // if (!message.msgError) {
-            //     timerID = setTimeout(() => {
-            //         props.history.push('/login');
-            //     }, 2000);
-            // }
+            if (!message.msgError) {
+                timerID = setTimeout(() => {
+                    props.history.push('/login');
+                }, 2000);
+            }
         });
     }
 
@@ -67,7 +67,7 @@ const RegisterForm = (props) => {
                 <button className="" type="submit">Register</button>
             </form>
 
-            {/* {message ? <Message message={message} /> : null} */}
+            {message ? <Message message={message} /> : null}
         </div>
     );
 }
