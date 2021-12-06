@@ -1,11 +1,11 @@
 import { useState, useContext } from 'react';
 import AuthService from '../services/AuthService';
-// import Message from './Message';
+import Message from './Message';
 import { AuthContext } from '../contexts/AuthContext';
 
 const LoginForm = (props) => {
     const [user, setUser] = useState({ username: '', password: '' });
-    // const [message, setMessage] = useState(null);
+    const [message, setMessage] = useState(null);
     const authContext = useContext(AuthContext);
 
     const onSubmit = e => {
@@ -21,7 +21,7 @@ const LoginForm = (props) => {
                 props.history.push('/');
             } else {
                 console.log("error... ", message);
-                // setMessage(message);
+                setMessage(message);
             }
         });
 
@@ -51,7 +51,7 @@ const LoginForm = (props) => {
                 <button className="" type="submit">Log In</button>
             </form>
 
-            {/* {message ? <Message message={message} /> : null} */}
+            {message ? <Message message={message} /> : null}
         </div>
     );
 }
