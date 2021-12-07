@@ -1,8 +1,17 @@
+import { useContext } from 'react';
+import { AuthContext } from './contexts/AuthContext';
+// import Navbar from './Components/Navbar';
+import Login from './components/LoginForm';
+import Register from './components/RegisterForm';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 function App() {
+    const { user, setUser, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    console.log("Auth Info from App.js: ", user, isAuthenticated);
+
     return (
-        <div className="App">
+        <Router className="App">
             <header className="App-header">
                 <p>
                     Edit <code>src/App.js</code> and save to reload.
@@ -16,7 +25,7 @@ function App() {
                     Learn React
                 </a>
             </header>
-        </div>
+        </Router>
     );
 }
 
