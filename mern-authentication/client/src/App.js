@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from './contexts/AuthContext';
-// import Navbar from './Components/Navbar';
+import Navbar from './components/Navbar';
 import Login from './components/LoginForm';
 import Register from './components/RegisterForm';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -12,6 +12,7 @@ function App() {
 
     return (
         <Router className="App">
+            <Navbar />
             <header className="App-header">
                 <p>
                     Edit <code>src/App.js</code> and save to reload.
