@@ -3,6 +3,7 @@ import { AuthContext } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import Login from './components/LoginForm';
 import Register from './components/RegisterForm';
+import Home from './components/Home';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
@@ -13,19 +14,8 @@ function App() {
     return (
         <Router className="App">
             <Navbar />
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/login' component={Login} />
         </Router>
     );
 }
