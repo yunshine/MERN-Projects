@@ -52,8 +52,8 @@ app.get('/', (req, res) => {
 // todo routes & todo API endpoints...
 // app.use('/api', todosRouter);
 
-app.listen(3000, () => {
-    console.log("Welcome to your MERN Authentication project! You've created a server using Express. The server has started and is now listening on port 3000...");
+app.listen(8080, () => {
+    console.log("Welcome to your MERN Authentication project! You've created a server using Express. The server has started and is now listening on port 8080...");
 });
 
 
