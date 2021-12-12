@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { AuthContext } from './contexts/AuthContext';
+// import { useContext } from 'react';
+// import { AuthContext } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import Login from './components/LoginForm';
 import Register from './components/RegisterForm';
@@ -13,13 +13,14 @@ function App() {
 
     return (
         <div className="App">
-            {/* <Navbar /> */}
             <BrowserRouter>
+                {/* <Navbar /> */}
                 <Routes>
                     {/* <AuthContextProvider> */}
                     <Route path='/' element={<Home />} />
-                    <Route exact path='/register' element={<Register />} />
-                    <Route exact path='/login' element={<Login />} />
+                    <Route exact path='/user/register' element={<Register />} />
+                    <Route exact path='/user/login' element={<Login />} />
+                    <Route path='/navbartest' element={<Navbar />} />
                     {/* </AuthContextProvider> */}
                 </Routes>
             </BrowserRouter>

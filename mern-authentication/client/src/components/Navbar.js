@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AuthService from '../services/AuthService';
 import { AuthContext } from '../contexts/AuthContext';
+import AuthService from '../services/AuthService';
 
 const Navbar = (props) => {
-    const { isAuthenticated, user, setIsAuthenticated, setUser } = useContext(AuthContext);
+    const { user, setUser, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
     const onClickLogoutHandler = () => {
         AuthService.logout().then(data => {
@@ -21,10 +21,10 @@ const Navbar = (props) => {
                 <Link to="/">
                     <li className="">Home</li>
                 </Link>
-                <Link to="/login">
+                <Link to="/user/login">
                     <li className="">Login</li>
                 </Link>
-                <Link to="/register">
+                <Link to="/user/register">
                     <li className="">Register</li>
                 </Link>
             </>
@@ -41,9 +41,10 @@ const Navbar = (props) => {
                     <li className="nav-item nav-link">Todos</li>
                 </Link> */}
                 {user.role === "admin" ?
-                    <Link to="/admin">
-                        <li className="">Admin</li>
-                    </Link> : null
+                    "admin link goes here..." : null
+                    // <Link to="/admin">
+                    //     <li className="">Admin</li>
+                    // </Link> : null
                 }
                 <button type="button" className="" onClick={onClickLogoutHandler}>Logout</button>
             </>
@@ -55,11 +56,9 @@ const Navbar = (props) => {
             {/* <Link to="/">
                 <div className="">Home</div>
             </Link> */}
-            <div className="" id="navbarText">
-                <ul className="">
-                    {!isAuthenticated ? unauthenticatedNavbar() : authenticatedNavbar()}
-                </ul>
-            </div>
+            <ul className="">
+                {!isAuthenticated ? unauthenticatedNavbar() : authenticatedNavbar()}
+            </ul>
         </nav >
     );
 }

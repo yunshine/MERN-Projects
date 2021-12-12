@@ -1,7 +1,8 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     login: user => {
-        return fetch('/user/login', {
+        // return fetch('/user/login', {
+        return fetch('http://localhost:8080/user/login', {
             method: 'post',
             body: JSON.stringify(user),
             headers: {

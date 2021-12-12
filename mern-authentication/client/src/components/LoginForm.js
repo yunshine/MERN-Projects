@@ -4,32 +4,36 @@ import Message from './Message';
 import { AuthContext } from '../contexts/AuthContext';
 
 const LoginForm = (props) => {
-    const [user, setUser] = useState({ username: '', password: '' });
+    const [userFromInput, setUserFromInput] = useState({ username: '', password: '' });
     const [message, setMessage] = useState(null);
     const authContext = useContext(AuthContext);
 
     const onSubmit = e => {
         e.preventDefault();
         console.log("form submitted...");
-        AuthService.login(user).then(data => {
+        AuthService.login(userFromInput).then(data => {
             console.log("Data from LoginForm.js: ", data);
-            const { isAuthenticated, user, message } = data;
+            // const { isAuthenticated, user, message } = data;
+            const { isAuthenticated, user } = data;
+            console.log("Data from Login.js 2...: ", isAuthenticated, user);
             if (isAuthenticated) {
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);
                 // props.history.push('/todos');
                 props.history.push('/');
             } else {
-                console.log("error... ", message);
-                setMessage(message);
+                // console.log("error... ", message);
+                // setMessage(message);
+                console.log("error... LoginForm.js");
+                setMessage("error... LoginForm.js");
             }
         });
 
     }
 
     const onChange = e => {
-        setUser({ ...user, [e.target.name]: e.target.value });
-        console.log("from onChange in LoginForm.js: ", user);
+        setUserFromInput({ ...userFromInput, [e.target.name]: e.target.value });
+        console.log("from onChange in LoginForm.js: ", userFromInput);
     }
 
     return (
