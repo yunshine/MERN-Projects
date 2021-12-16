@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import AuthService from '../services/AuthService';
 import Message from './Message';
 import { AuthContext } from '../contexts/AuthContext';
@@ -7,6 +8,7 @@ const LoginForm = (props) => {
     const [userFromInput, setUserFromInput] = useState({ username: '', password: '' });
     const [message, setMessage] = useState(null);
     const authContext = useContext(AuthContext);
+    let navigate = useNavigate();
 
     const onSubmit = e => {
         e.preventDefault();
@@ -15,12 +17,15 @@ const LoginForm = (props) => {
             console.log("Data from LoginForm.js: ", data);
             // const { isAuthenticated, user, message } = data;
             const { isAuthenticated, user } = data;
-            console.log("Data from Login.js 2...: ", isAuthenticated, user);
             if (isAuthenticated) {
-                authContext.setUser(user);
-                authContext.setIsAuthenticated(isAuthenticated);
+                console.log("Data from Login.js 2...: ", isAuthenticated, user);
+                console.log("authContext", authContext);
+                // authContext.setUser(user);
+                // authContext.setIsAuthenticated(isAuthenticated);
+
                 // props.history.push('/todos');
-                props.history.push('/');
+                navigate("/");
+                // props.history.push('/');
             } else {
                 // console.log("error... ", message);
                 // setMessage(message);
@@ -33,7 +38,6 @@ const LoginForm = (props) => {
 
     const onChange = e => {
         setUserFromInput({ ...userFromInput, [e.target.name]: e.target.value });
-        console.log("from onChange in LoginForm.js: ", userFromInput);
     }
 
     return (
