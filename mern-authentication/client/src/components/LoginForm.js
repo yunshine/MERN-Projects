@@ -20,7 +20,7 @@ const LoginForm = (props) => {
             if (isAuthenticated) {
                 console.log("Data from Login.js 2...: ", isAuthenticated, user);
                 console.log("authContext", authContext);
-                // authContext.setUser(user);
+                authContext.setUser(user);
                 // authContext.setIsAuthenticated(isAuthenticated);
 
                 // props.history.push('/todos');
