@@ -35,7 +35,7 @@ const Navbar = (props) => {
         return (
             <>
                 <Link to="/">
-                    <li className="">Home</li>
+                    <li className="">Authenticated Home</li>
                 </Link>
                 {/* <Link to="/todos">
                     <li className="nav-item nav-link">Todos</li>
