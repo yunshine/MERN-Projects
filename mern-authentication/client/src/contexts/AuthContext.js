@@ -11,10 +11,12 @@ const AuthContextProvider = ({ children }) => {
     // const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
+        console.log("useEffecting in AuthContext.js...");
         AuthService.isAuthenticated().then(data => {
+            console.log("in AuthContext line 15. data: ", data);
             setUser(data.user);
             setIsAuthenticated(data.isAuthenticated);
-            console.log("in authcontext line 17...")
+            console.log("in AuthContext line 18. isAuthenticated? ", isAuthenticated);
             // setIsLoaded(true);
         });
     }, []);

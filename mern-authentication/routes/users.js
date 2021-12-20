@@ -39,6 +39,7 @@ userRouter.post('/register', (req, res) => {
 
 userRouter.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
     if (req.isAuthenticated()) {
+        console.log("user login route - authenticated");
         const { _id, username, role } = req.user;
         const token = signToken(_id);
         res.cookie('access_token', token, { httpOnly: true, sameSite: true });
@@ -47,8 +48,16 @@ userRouter.post('/login', passport.authenticate('local', { session: false }), (r
 });
 
 userRouter.get('/logout', passport.authenticate('jwt', { session: false }), (req, res) => {
+    console.log("in /logout function in user routes...");
     res.clearCookie('access_token');
     res.json({ user: { username: "", role: "" }, success: true });
+});
+
+// Maintains login persistence for React...
+userRouter.get('/authenticated', passport.authenticate('jwt', { session: false }), (req, res) => {
+    console.log("in /authenticated function in user routes...");
+    const { username, role } = req.user;
+    res.status(200).json({ isAuthenticated: true, user: { username, role } });
 });
 
 // userRouter.post('/todo', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -87,11 +96,7 @@ userRouter.get('/logout', passport.authenticate('jwt', { session: false }), (req
 //     }
 // });
 
-// Maintains login persistence for React...
-// userRouter.get('/authenticated', passport.authenticate('jwt', { session: false }), (req, res) => {
-//     const { username, role } = req.user;
-//     res.status(200).json({ isAuthenticated: true, user: { username, role } });
-// });
+
 
 module.exports = userRouter;
 

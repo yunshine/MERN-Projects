@@ -27,12 +27,14 @@ export default {
             .then(data => data);
     },
     logout: () => {
-        return fetch('/user/logout')
+        console.log("in AuthService logout function...");
+        return fetch('user/logout')
             .then(res => res.json())
             .then(data => data);
     },
     isAuthenticated: () => {
-        return fetch('user/authenticated')
+        console.log("in AuthService isAuthenticated function...");
+        return fetch('http://localhost:8080/user/authenticated')
             .then(res => {
                 if (res.status !== 401) {
                     return res.json().then(data => data);

@@ -38,6 +38,7 @@ passport.use(new LocalStrategy((username, password, done) => {
 
         // if no user exists...
         if (!user) {
+            console.log("no user exists");
             return done(null, false);
         }
 

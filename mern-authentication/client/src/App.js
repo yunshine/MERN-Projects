@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Login from './components/LoginForm';
 import Register from './components/RegisterForm';
 import Home from './components/Home';
+import Test from './components/Test';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import AuthContextProvider from './contexts/AuthContext';
@@ -23,7 +24,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route exact path='/user/register' element={<Register />} />
                         <Route exact path='/user/login' element={<Login />} />
-                        <Route path='/navbartest' element={<Navbar />} />
+                        <Route path='/test' element={<Test />} />
                         {/* </AuthContextProvider> */}
                     </Routes>
                 </AuthContextProvider>

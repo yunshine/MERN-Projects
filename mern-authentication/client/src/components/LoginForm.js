@@ -7,22 +7,20 @@ import { AuthContext } from '../contexts/AuthContext';
 const LoginForm = (props) => {
     const [userFromInput, setUserFromInput] = useState({ username: '', password: '' });
     const [message, setMessage] = useState(null);
-    const authContext = useContext(AuthContext);
-    let navigate = useNavigate();
+    const { setUser, setIsAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const onSubmit = e => {
         e.preventDefault();
         console.log("form submitted...");
         AuthService.login(userFromInput).then(data => {
-            console.log("Data from LoginForm.js: ", data);
             // const { isAuthenticated, user, message } = data;
             const { isAuthenticated, user } = data;
             if (isAuthenticated) {
-                console.log("Data from Login.js 2...: ", isAuthenticated, user);
-                console.log("authContext", authContext);
-                authContext.setUser(user);
-                authContext.setIsAuthenticated(isAuthenticated);
-
+                console.log("Auth Data from Login.js...: ", isAuthenticated, user);
+                setUser(user);
+                setIsAuthenticated(isAuthenticated);
+                console.log("user after logging in: ", user);
                 // props.history.push('/todos');
                 navigate("/");
                 // props.history.push('/');
