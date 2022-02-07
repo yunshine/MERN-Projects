@@ -1,7 +1,6 @@
 require('dotenv').config({ path: './config.env' });
 const express = require("express");
 const connectDB = require('./config/db');
-const errorHandler = require('./middleware/error');
 
 connectDB();
 
@@ -13,7 +12,7 @@ app.use(express.json());
 
 
 const server = app.listen(PORT, () => {
-    console.log(`This is the Degica Technical Interview App! You've created a server using Express. The server has started and is now listening on port ${PORT}...`);
+    console.log(`This is the Empty App! You've created a server using Express.js. The server has started and is now listening on port ${PORT}...`);
 });
 
 process.on("unhandledRejection", (error, promise) => {
