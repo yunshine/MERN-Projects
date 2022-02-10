@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 const server = app.listen(PORT, () => {
-    console.log(`testThis is the Empty App! You've created a server using Express.js. The server has started and is now listening on port ${PORT}...`);
+    console.log(`This is the Empty App! You've created a server using Express.js. The server has started and is now listening on port ${PORT}...`);
 });
 
 process.on("unhandledRejection", (error, promise) => {
